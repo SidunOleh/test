@@ -24,8 +24,8 @@
         </a>
     </p>
     <p>
-        <a href="/shuffle" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-            Shuffle
+        <a href="/template" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            Page template
         </a>
     </p>
 </body>

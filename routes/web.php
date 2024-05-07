@@ -102,14 +102,6 @@ Route::get('/random', function (Request $request) {
     ]);
 });
 
-Route::get('/shuffle', function () {
-    $list = array_merge(
-        array_fill(0, 34, 'profile'), 
-        array_fill(0, 20, 'advertisement'), 
-        array_fill(0, 6, 'roulette')
-    );
-
-    shuffle($list);
-
-    return view('shuffle', ['list' => $list,]);
+Route::get('/template', function () {
+    return view('template');
 });
