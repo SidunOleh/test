@@ -65,6 +65,12 @@ createApp({
             this.rules = this.rules.filter((rule, n) => n != i)
         },
     },
+    mounted() {
+        this.rules.push({
+            type: 'profile',
+            count: 1,
+        })
+    },
 }).mount('#app')
 </script>
 </body>
