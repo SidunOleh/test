@@ -34,7 +34,7 @@
             <tr>
                 <td>{{ $addresse->latitude }}</td>
                 <td>{{ $addresse->longitude }}</td>
-                <td>{{ round($addresse->distance) }}mi</td>
+                <td>{{ number_format(round($addresse->distance)) }}mi</td>
             </tr>
             @endforeach
         </tbody>
