@@ -9,20 +9,22 @@
 </head>
 <body>
     <div class="invoice d-flex align-items-center justify-content-center vh-100 flex-column">
-        <div class="status mb-3">
-        </div>
-        <img src="{{ $payment->qr_code }}" class="mb-2" alt="">
-        <div class="address mb-4">
-            {{ $payment->qr_url }}
-        </div>
-        <div class="amount text-center mb-3">
-            Invoice amount: {{ $payment->invoice_sum . ' ' . $payment->currency }}
-            <br>
-            Invoice commission: {{ $payment->invoice_commission . ' ' . $payment->currency }}
-            <br>
-            Total: {{ $payment->invoice_total_sum . ' ' . $payment->currency }}
-        </div>
-        <div class="countdown">
+        <div class="invoice__body text-center bg-light p-5">
+            <div class="status mb-3">
+            </div>
+            <img src="{{ $payment->qr_code }}" class="mb-2" alt="">
+            <div class="address mb-4">
+                {{ $payment->qr_url }}
+            </div>
+            <div class="amount text-center mb-3">
+                Invoice amount: {{ $payment->invoice_sum . ' ' . $payment->currency }}
+                <br>
+                Invoice commission: {{ $payment->invoice_commission . ' ' . $payment->currency }}
+                <br>
+                Total: {{ $payment->invoice_total_sum . ' ' . $payment->currency }}
+            </div>
+            <div class="countdown">
+            </div>
         </div>
     </div>
     <script>
