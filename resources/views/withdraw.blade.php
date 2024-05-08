@@ -37,12 +37,12 @@
 
             <input class="form-control mb-4" type="text" placeholder="Wallet address" name="to">
 
-            <button class="btn btn-primary mb-3">
+            <div class="balance mb-3"></div>
+            <div class="fee mb-3"></div>
+            
+            <button class="btn btn-primary">
                 Withdraw
             </button>
-
-            <div class="balance mb-3"></div>
-            <div class="fee"></div>
         </form>
     </div>
 
