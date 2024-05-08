@@ -13,8 +13,8 @@
         Your location: {{ $geo['lat'] . ', ' . $geo['lon'] }}({{ $geo['city'] . ', ' . $geo['country'] }})
     </div>
 
-    <form method="GET" class="mb-3">
-        <input class="form-control mb-2" min="1" type="number" name="radius" placeholder="Enter radius" value="{{ $radius }}">
+    <form method="GET" class="mb-3 d-flex">
+        <input class="form-control mr-2" min="1" type="number" name="radius" placeholder="Enter radius" value="{{ $radius }}">
         <button class="btn btn-primary">
             Apply 
         </button>
