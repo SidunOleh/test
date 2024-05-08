@@ -14,7 +14,7 @@
     </div>
 
     <form method="GET" class="mb-3">
-        <input class="form-control-sm mb-2" min="1" type="number" name="radius" placeholder="Enter radius" value="{{ $radius }}">
+        <input class="form-control mb-2" min="1" type="number" name="radius" placeholder="Enter radius" value="{{ $radius }}">
         <br>
         <button class="btn btn-primary">
             Apply 
