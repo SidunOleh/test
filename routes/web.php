@@ -107,7 +107,7 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/in-radius', function (Request $request) {
+Route::get('/distance', function (Request $request) {
     $radius = $request->query('radius');
 
     $geo = unserialize(file_get_contents('http://ip-api.com/php/' . $request->ip()));
@@ -118,7 +118,7 @@ Route::get('/in-radius', function (Request $request) {
         $radius
     );
 
-    return view('in-radius', [
+    return view('distance', [
         'radius' => $radius,
         'geo' => $geo,
         'addresses' => $addresses,
