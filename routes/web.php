@@ -4,6 +4,7 @@ use App\Models\Address;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
+use Illuminate\Http\Client\Pool;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -42,6 +43,10 @@ Route::post('/pay', function (Request $request) {
     if ($response['status'] == 'success') {
         $payment = Payment::create([
             'plisio_txn_id' => $response['data']['id'],
+            'invoice_sum' => $response['data']['invoice_sum'],
+            'invoice_commission' => $response['data']['invoice_commission'],
+            'invoice_total_sum' => $response['data']['invoice_total_sum'],
+            'currency' => $response['data']['currency'],
             'qr_url' => $response['data']['qr_url'],
             'qr_code' => $response['data']['qr_code'],
             'expire_at_utc' => $response['data']['expire_at_utc'],
@@ -88,6 +93,33 @@ Route::post('/withdraw', function (Request $request) {
         return back()->with('message', 'OK');
     } else {
         return back()->withErrors($response['data']['name'] ?? $response['data']['message']);
+    }
+});
+
+Route::get('/withdraw/info', function (Request $request) {
+    $currency = $request->query('currency');
+    $amount = $request->query('amount');
+
+    $responses = Http::pool(fn (Pool $pool) => [
+        $pool->get("https://api.plisio.net/api/v1/balances/{$currency}", [
+            'api_key' => env('PLISIO_API_KEY'),
+        ]),
+        $pool->get("https://api.plisio.net/api/v1/operations/fee/{$currency}", [
+            'api_key' => env('PLISIO_API_KEY'),
+            'amounts' => $amount,
+        ]),
+    ]);
+
+    $balance = $responses[0]->json();
+    $fee = $responses[1]->json();
+
+    if ($balance['status'] == 'success' and $fee['status'] == 'success') {
+        return response()->json([
+            'balance' => $balance['data']['balance'],
+            'fee' => $fee['data']['fee'],
+        ]);
+    } else {
+        return response('', 400);
     }
 });
 

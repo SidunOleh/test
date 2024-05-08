@@ -15,6 +15,13 @@
         <div class="address mb-4">
             {{ $payment->qr_url }}
         </div>
+        <div class="amount text-center mb-3">
+            Invoice amount: {{ $payment->invoice_sum . ' ' . $payment->currency }}
+            <br>
+            Invoice commission: {{ $payment->invoice_commission . ' ' . $payment->currency }}
+            <br>
+            Total: {{ $payment->invoice_total_sum . ' ' . $payment->currency }}
+        </div>
         <div class="countdown">
         </div>
     </div>

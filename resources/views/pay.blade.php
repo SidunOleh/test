@@ -26,6 +26,9 @@
                 <option value="USDT_TRX">
                     USDT TRC20
                 </option>
+                <option value="TRX">
+                    Tron
+                </option>
             </select>
 
             <button class="btn btn-primary">

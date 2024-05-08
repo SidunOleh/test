@@ -11,6 +11,10 @@ class Payment extends Model
 
     protected $fillable = [
         'plisio_txn_id',
+        'invoice_sum',
+        'invoice_commission',
+        'invoice_total_sum',
+        'currency',
         'qr_url',
         'qr_code',
         'expire_at_utc',

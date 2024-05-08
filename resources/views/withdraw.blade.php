@@ -28,17 +28,39 @@
                 <option value="USDT_TRX">
                     USDT TRC20
                 </option>
+                <option value="TRX">
+                    Tron
+                </option>
             </select>
 
             <input class="form-control mb-4" type="number" min="0" placeholder="Amount" name="amount" value="0">
 
             <input class="form-control mb-4" type="text" placeholder="Wallet address" name="to">
 
-            <button class="btn btn-primary">
+            <button class="btn btn-primary mb-3">
                 Withdraw
             </button>
+
+            <div class="balance mb-3"></div>
+            <div class="fee"></div>
         </form>
     </div>
+
+    <script>
+        const currency_select = document.querySelector('[name=currency]')
+        currency_select.addEventListener('change', getInfo)
+        const amount_input = document.querySelector('[name=amount]')
+        amount_input.addEventListener('change', getInfo)
+        const balance_el = document.querySelector('.balance')
+        const fee_el = document.querySelector('.fee')
+
+        async function getInfo() {
+            const res = await fetch(`/withdraw/info?currency=${currency_select.value}&amount=${amount_input.value}`)
+            const data = await res.json()
+            balance_el.innerHTML = `Balance - ${data.balance} ${currency_select.value}`
+            fee_el.innerHTML = `Fee - ${data.fee} ${currency_select.value}`
+        }
+    </script>
 
 </body>
 
