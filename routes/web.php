@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Payment;
@@ -104,4 +105,22 @@ Route::get('/random', function (Request $request) {
 
 Route::get('/template', function () {
     return view('template');
+});
+
+Route::get('/in-radius', function (Request $request) {
+    $radius = $request->query('radius');
+
+    $geo = unserialize(file_get_contents('http://ip-api.com/php/' . $request->ip()));
+
+    $addresses = Address::inRadius(
+        $geo['lat'], 
+        $geo['lon'], 
+        $radius
+    );
+
+    return view('in-radius', [
+        'radius' => $radius,
+        'geo' => $geo,
+        'addresses' => $addresses,
+    ]);
 });

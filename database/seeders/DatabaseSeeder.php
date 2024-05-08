@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Address;
 use App\Models\Item;
 use Illuminate\Database\Seeder;
 
@@ -22,5 +23,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Item::factory(100)->create();
+
+        Address::factory(100)->create();
     }
 }
