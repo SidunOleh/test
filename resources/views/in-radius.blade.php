@@ -24,16 +24,14 @@
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
+                <th scope="col">Location</th>
                 <th scope="col">Distance</th>
             </tr>
         </thead>
         <tbody>
             @foreach($addresses as $addresse)
             <tr>
-                <td>{{ $addresse->latitude }}</td>
-                <td>{{ $addresse->longitude }}</td>
+                <td>{{ $addresse->latitude . ', ' . $addresse->longitude }}</td>
                 <td>{{ number_format(round($addresse->distance)) }}mi</td>
             </tr>
             @endforeach
