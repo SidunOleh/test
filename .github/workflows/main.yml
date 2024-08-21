@@ -30,4 +30,4 @@ jobs:
               docker image pull sidunoleh/test-php:latest
               docker container stop test-php
               docker container rm test-php
-              docker container run -d --name test-php -p 5000:5000 -v /var/www/app:/var/www/app test/php
+              docker container run -d --name test-php -p 5000:5000 -v /var/www/app:/var/www/app sidunoleh/test-php:latest
