@@ -20,6 +20,15 @@ jobs:
           push: true
           tags: sidunoleh/test-php:latest
 
+      - uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: 22
+          source: './'
+          target: '/var/www/test-php'
+
       - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -30,4 +39,4 @@ jobs:
               docker image pull sidunoleh/test-php:latest
               docker container stop test-php
               docker container rm test-php
-              docker container run -d --name test-php -p 5000:5000 -v /var/www/app:/var/www/app sidunoleh/test-php:latest
+              docker container run -d --name test-php -p 5000:5000 -v /var/www/test-php/app:/var/www/app sidunoleh/test-php:latest
